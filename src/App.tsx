@@ -13,44 +13,39 @@ const Container = styled.div`
 `;
 
 export const App: FC = () => {
-  const [topics, setTopics] = useState<Topic[] | null>(null);
+  const [topics, setTopics] = useState<Topic[]>([]);
 
+  const fetchAllTopics = async () => {
+    const topicsData = await fetchTopics();
+    setTopics(topicsData);
+  };
   useEffect(() => {
-    const fetchAllTopics = async () => {
-      const topicsData = await fetchTopics();
-      setTopics(topicsData);
-    };
 
     fetchAllTopics();
   }, []);
 
-  console.log(topics);
-
   return (
     <>
       <Header />
-      {topics !== null && (
-        <Container>
-          <NavPanel topics={topics} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <ContentContainer>
-                  Please select a topic from the list
-                </ContentContainer>
-              }
-            />
-            <Route path="/topics/:id" element={<Content />} />
-            <Route
-              path="*"
-              element={
-                <ContentContainer>Error: page not found</ContentContainer>
-              }
-            />
-          </Routes>
-        </Container>
-      )}
+
+      <Container>
+        <NavPanel topics={topics} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ContentContainer>
+                Please select a topic from the list
+              </ContentContainer>
+            }
+          />
+          <Route path="/topics/:id" element={<Content />} />
+          <Route
+            path="*"
+            element={<ContentContainer>Error: page not found</ContentContainer>}
+          />
+        </Routes>
+      </Container>
     </>
   );
 };

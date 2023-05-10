@@ -16,8 +16,6 @@ export const Content: FC = () => {
     fetchData();
   }, [id]);
 
-  console.log(topic);
-
   if (!topic) {
     return (
       <ContentContainer>
