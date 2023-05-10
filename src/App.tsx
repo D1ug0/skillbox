@@ -20,7 +20,6 @@ export const App: FC = () => {
     setTopics(topicsData);
   };
   useEffect(() => {
-
     fetchAllTopics();
   }, []);
 

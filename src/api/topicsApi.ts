@@ -12,7 +12,7 @@ export const fetchTopics = async (): Promise<Topic[]> => {
 };
 
 export const fetchOneTopic = async (id: number): Promise<Topic> => {
-  const response = await axios.get<Topic>(
+  const response = await axios.get<Topic[]>(
     `http://localhost:3000/topics?id=${id}`
   );
   return response.data[0];

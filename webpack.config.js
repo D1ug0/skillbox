@@ -10,6 +10,7 @@ module.exports = {
     historyApiFallback: {
       index: "/index.html"
     },
+    port: 8080
   },
   module: {
     rules: [
